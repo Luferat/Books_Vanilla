@@ -45,7 +45,13 @@ public class JwtUtil {
 
     public boolean isTokenValid(String token) {
         try {
-            Claims claims = parseToken(token).getBody(); // <- aqui o fix
+            Claims claims = parseToken(token).getBody();
+            String subject = claims.getSubject();  // Aqui seria o ID do usuário
+            // Verifica se o 'subject' é um número válido
+            long userId = Long.parseLong(subject);
+            if (userId <= 0) {
+                return false;
+            }
             return !claims.getExpiration().before(new Date());
         } catch (Exception e) {
             return false;

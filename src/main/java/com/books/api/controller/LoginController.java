@@ -69,8 +69,9 @@ public class LoginController {
 
         Map<String, Object> claims = new HashMap<>();
         claims.put("id", account.getId());
+        claims.put("role", account.getRole().name());
 
-        String token = jwt.generateToken(account.getEmail(), claims);
+        String token = jwt.generateToken(String.valueOf(account.getId()), claims);
 
         Map<String, Object> data = new LinkedHashMap<>();
         data.put("id", account.getId());

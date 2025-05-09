@@ -6,6 +6,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
@@ -20,6 +21,7 @@ public class CookieUtil {
         Cookie cookie = new Cookie("token", token);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
+        cookie.setSecure(true);
         cookie.setMaxAge(config.getInt("cookieMaxAge") * 3600);
         response.addCookie(cookie);
     }
@@ -36,23 +38,19 @@ public class CookieUtil {
         Cookie cookie = new Cookie("userdata", encoded);
         cookie.setPath("/");
         cookie.setHttpOnly(false); // acessível via JS
+        cookie.setSecure(true);
         cookie.setMaxAge(config.getInt("cookieMaxAge") * 3600);
         response.addCookie(cookie);
     }
 
-    public void deleteCookies(HttpServletResponse response) {
-        Cookie token = new Cookie("token", null);
-        token.setPath("/");
-        token.setHttpOnly(true);
-        token.setMaxAge(0);
-
-        Cookie user = new Cookie("userdata", null);
-        user.setPath("/");
-        user.setHttpOnly(false);
-        user.setMaxAge(0);
-
-        response.addCookie(token);
-        response.addCookie(user);
+    public void removeCookie(String name, HttpServletResponse response) {
+        ResponseCookie cookie = ResponseCookie.from(name, "")
+                .path("/")
+                .maxAge(0)
+                .httpOnly("token".equals(name))
+                .sameSite("Lax")
+                .build();
+        response.addHeader("Set-Cookie", cookie.toString());
     }
 
     public String getTokenFromRequest(HttpServletRequest request) {
