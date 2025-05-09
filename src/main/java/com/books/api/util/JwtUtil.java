@@ -1,5 +1,7 @@
 package com.books.api.util;
 
+import com.books.api.model.Account;
+import com.books.api.repository.AccountRepository;
 import com.books.api.service.ConfigService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
@@ -79,5 +81,20 @@ public class JwtUtil {
         }
         return null;
     }
+
+    public Account getLoggedUser(HttpServletRequest request, AccountRepository repo) {
+        String token = extractTokenFromCookies(request);
+        if (token == null || !isTokenValid(token)) {
+            return null;
+        }
+        Long userId = getUserId(token);
+        if (userId == null) {
+            return null;
+        }
+        return repo.findById(userId)
+                .filter(acc -> acc.getStatus() == Account.Status.ON)
+                .orElse(null);
+    }
+
 
 }

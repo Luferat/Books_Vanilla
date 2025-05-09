@@ -21,4 +21,6 @@ public interface AccountRepository extends JpaRepository<Account, Long> {
      * @return Um Optional contendo a conta, se encontrada.
      */
     Optional<Account> findByEmail(String email);
+
+    Optional<Account> findByCpf(String cpf);
 }
