@@ -83,7 +83,7 @@ public class LoginController {
         cookieUtil.cookieToken(token, response);
 
         // Dados do usuário em JSON (visível para JS)
-        cookieUtil.cookieUser(account, response);
+        cookieUtil.cookieUser(account, token, response);
 
         return ResponseEntity.ok(ApiResponse.success("200", "Login realizado com sucesso.", data));
     }

@@ -24,12 +24,13 @@ public class CookieUtil {
         response.addCookie(cookie);
     }
 
-    public void cookieUser(Account user, HttpServletResponse response) {
-        String json = String.format("{\"id\":%d,\"name\":\"%s\",\"photo\":\"%s\",\"role\":\"%s\"}",
+    public void cookieUser(Account user, String token, HttpServletResponse response) {
+        String json = String.format("{\"id\":%d,\"name\":\"%s\",\"photo\":\"%s\",\"role\":\"%s\", \"token\":\"%s\"}",
                 user.getId(),
                 user.getName(),
                 user.getPhoto(),
-                user.getRole()
+                user.getRole(),
+                token
         );
         String encoded = URLEncoder.encode(json, StandardCharsets.UTF_8);
         Cookie cookie = new Cookie("userdata", encoded);
