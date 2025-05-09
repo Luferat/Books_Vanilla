@@ -1,4 +1,4 @@
-package com.books.api;
+package com.books;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 

@@ -1,4 +1,4 @@
-package com.books.api;
+package com.books;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
