@@ -2,8 +2,12 @@ package com.books.api.controller;
 
 import com.books.api.model.Account;
 import com.books.api.repository.AccountRepository;
+import com.books.api.service.ConfigService;
 import com.books.api.util.ApiResponse;
+import com.books.api.util.CookieUtil;
 import com.books.api.util.JwtUtil;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,9 +29,18 @@ public class LoginController {
 
     private final AccountRepository accountRepository;
     private final JwtUtil jwt;
+    private final CookieUtil cookieUtil;
+    private final ConfigService config;
 
     @PostMapping("/login")
-    public ResponseEntity<?> login(@RequestBody Map<String, String> body) {
+    public ResponseEntity<?> login(@RequestBody Map<String, String> body, HttpServletRequest request, HttpServletResponse response) {
+
+        String getToken = cookieUtil.getTokenFromRequest(request);
+        if (getToken != null && jwt.isTokenValid(getToken)) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                    .body(ApiResponse.error("400", "Você já está logado."));
+        }
+
         String email = body.get("email");
         String password = body.get("password");
 
@@ -66,8 +79,12 @@ public class LoginController {
         data.put("role", account.getRole().name());
         data.put("token", token);
 
+        // JWT cookie (HttpOnly)
+        cookieUtil.cookieToken(token, response);
+
+        // Dados do usuário em JSON (visível para JS)
+        cookieUtil.cookieUser(account, response);
+
         return ResponseEntity.ok(ApiResponse.success("200", "Login realizado com sucesso.", data));
     }
-
-    // Falta criar os cookies
 }

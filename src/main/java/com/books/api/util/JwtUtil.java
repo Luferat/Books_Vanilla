@@ -42,4 +42,13 @@ public class JwtUtil {
                 .build()
                 .parseClaimsJws(token);
     }
+
+    public boolean isTokenValid(String token) {
+        try {
+            Claims claims = parseToken(token).getBody(); // <- aqui o fix
+            return !claims.getExpiration().before(new Date());
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
