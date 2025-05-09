@@ -1,4 +1,4 @@
-package com.books.api.config;
+package com.books.api.model;
 
 import jakarta.persistence.*;
 import lombok.*;

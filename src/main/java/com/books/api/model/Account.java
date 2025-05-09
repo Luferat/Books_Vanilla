@@ -18,7 +18,7 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class AccountModel {
+public class Account {
 
     /**
      * Identificador único da conta (chave primária).
