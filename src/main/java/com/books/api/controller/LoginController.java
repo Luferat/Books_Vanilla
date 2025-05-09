@@ -2,7 +2,6 @@ package com.books.api.controller;
 
 import com.books.api.model.Account;
 import com.books.api.repository.AccountRepository;
-import com.books.api.service.ConfigService;
 import com.books.api.util.ApiResponse;
 import com.books.api.util.CookieUtil;
 import com.books.api.util.JwtUtil;
@@ -30,7 +29,6 @@ public class LoginController {
     private final AccountRepository accountRepository;
     private final JwtUtil jwt;
     private final CookieUtil cookieUtil;
-    private final ConfigService config;
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody Map<String, String> body, HttpServletRequest request, HttpServletResponse response) {
