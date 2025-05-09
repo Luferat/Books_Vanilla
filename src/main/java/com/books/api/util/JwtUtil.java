@@ -57,4 +57,13 @@ public class JwtUtil {
             return false;
         }
     }
+
+    public Long getUserId(String token) {
+        try {
+            Claims claims = parseToken(token).getBody();
+            return Long.parseLong(claims.getSubject());
+        } catch (Exception e) {
+            return null;
+        }
+    }
 }

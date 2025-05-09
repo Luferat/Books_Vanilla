@@ -29,7 +29,7 @@ public class ApiResponse {
     public static Map<String, Object> success(
             String code,
             String message,
-            Map<String, Object> data
+            Object data
     ) {
         Map<String, Object> result = new LinkedHashMap<>();
         result.put("status", "success");
