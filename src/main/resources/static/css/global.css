@@ -1,0 +1,37 @@
+/* Reset default margin and padding */
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+header h1{
+    text-align: center;
+}
+
+#conteiner{
+    display: table;
+    margin: auto;
+}
+
+#DOC-BLOCK{
+    background-color: aliceblue;
+    padding-left: 10px;
+}
+pre{
+    text-align: left;
+}
+
+table{
+    width: 50%;
+    border-collapse: collapse;
+    white-space: nowrap;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+th{
+    background-color: beige;
+}
