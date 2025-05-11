@@ -32,8 +32,7 @@ public class Account {
     @Column(nullable = false)
     private String password;
 
-    @Lob
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false)
     private String photo;
 
     @Column(nullable = false, unique = true)
