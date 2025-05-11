@@ -55,10 +55,21 @@ public class LoginController {
 
         Account account = opt.get();
 
+        System.out.println(">> Senha enviada: " + password);
+        System.out.println(">> Senha no banco: " + account.getPassword());
+        System.out.println(">> BCrypt match? " + BCrypt.checkpw(password, account.getPassword()));
+
+        System.out.println(">> Senha enviada: " + password);
+        System.out.println(">> Senha no banco: " + account.getPassword());
+        System.out.println(">> BCrypt match? " + BCrypt.checkpw(password, account.getPassword()));
+
+
+
         if (!BCrypt.checkpw(password, account.getPassword())) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
-                    .body(ApiResponse.error("401", "Senha incorreta."));
+                    .body(ApiResponse.error("401", "Senha incorreta. "));
         }
+
 
         if (!account.getStatus().name().equals("ON")) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
