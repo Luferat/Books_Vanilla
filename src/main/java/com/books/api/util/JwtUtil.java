@@ -27,7 +27,7 @@ public class JwtUtil {
     public void init() {
         String secret = config.getSecretKey();
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
-        this.expiration = config.getTokenMaxAge() * 3600L;
+        this.expiration = config.getTokenMaxAge() * 3600L * 1000L; // Convertendo para milissegundos
     }
 
     public String generateToken(String subject, Map<String, Object> claims) {

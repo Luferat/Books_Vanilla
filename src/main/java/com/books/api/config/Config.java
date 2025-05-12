@@ -21,4 +21,5 @@ public class Config {
     private final boolean maintenanceMode = false; // Se true, exibe página de manutenção para todos os usuários
     private final String apiVersion = "v1"; // Versão atual da API
     private final String supportEmail = "suporte@books.com"; // E-mail de contato do suporte técnico
+    private final boolean httpsOn = false; // true somente se estiver usando HTTP. Afeta os cookies.
 }

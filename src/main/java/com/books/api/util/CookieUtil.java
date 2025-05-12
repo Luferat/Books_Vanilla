@@ -22,7 +22,7 @@ public class CookieUtil {
         Cookie cookie = new Cookie("token", token);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        cookie.setSecure(config.isHttpsOn());
         cookie.setMaxAge(config.getCookieMaxAge() * 3600);
         response.addCookie(cookie);
     }
@@ -39,7 +39,7 @@ public class CookieUtil {
         Cookie cookie = new Cookie("userdata", encoded);
         cookie.setPath("/");
         cookie.setHttpOnly(false); // acessível via JS
-        cookie.setSecure(true);
+        cookie.setSecure(config.isHttpsOn());
         cookie.setMaxAge(config.getCookieMaxAge() * 3600);
         response.addCookie(cookie);
     }
