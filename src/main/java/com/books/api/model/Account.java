@@ -38,7 +38,7 @@ public class Account {
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    @Column(unique = true)
+    // @Column(unique = true)
     private String tel;
 
     @Column(nullable = false)

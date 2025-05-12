@@ -63,7 +63,7 @@ public class AccountPhotoController {
         }
     }
 
-    // Implementação de um método para salvar a foto e obter a URL
+    // Implementação de um metodo para salvar a foto e obter a URL
     private String savePhotoAndGetUrl(MultipartFile photoFile, Long userId) throws IOException {
         // Exemplo básico: salvar no sistema de arquivos com um nome baseado no ID do usuário
         String fileName = "user_" + userId + "_" + photoFile.getOriginalFilename();

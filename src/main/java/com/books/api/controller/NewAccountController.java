@@ -1,8 +1,8 @@
 package com.books.api.controller;
 
+import com.books.api.config.Config;
 import com.books.api.model.Account;
 import com.books.api.repository.AccountRepository;
-import com.books.api.service.ConfigService;
 import com.books.api.util.ApiResponse;
 import com.books.api.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +24,7 @@ import java.util.Optional;
 public class NewAccountController {
 
     private final AccountRepository accountRepo;
-    private final ConfigService config;
+    private final Config config;
     private final JwtUtil jwt;
 
     @PostMapping("/create")
@@ -52,9 +52,10 @@ public class NewAccountController {
         // Email em minúsculas
         String email = body.get("email").toLowerCase();
 
-        // Verifica duplicidade de email ou CPF
+        // Verifica duplicidade de email, tel ou CPF
         Optional<Account> checkEmail = accountRepo.findByEmail(email);
         Optional<Account> checkCpf = accountRepo.findByCpf(body.get("cpf"));
+        // Optional<Account> checkTel = accountRepo.findByTel(body.get("tel"));
 
         if (checkEmail.isPresent()) {
             return ResponseEntity.badRequest().body(ApiResponse.error("400", "Este e-mail já está em uso."));
@@ -63,6 +64,8 @@ public class NewAccountController {
         if (checkCpf.isPresent()) {
             return ResponseEntity.badRequest().body(ApiResponse.error("400", "Este CPF já está em uso."));
         }
+
+        // if (checkTel.isPresent()) { return ResponseEntity.badRequest().body(ApiResponse.error("400", "Este telefone já está em uso.")); }
 
         // Cria nova conta
         Account acc = new Account();
@@ -76,7 +79,7 @@ public class NewAccountController {
         acc.setAddress(body.get("address"));
         acc.setRole(Account.Role.USER);
         acc.setStatus(Account.Status.ON);
-        acc.setPhoto(config.get("defaultUserPhoto")); // valor vindo do banco
+        acc.setPhoto(config.getDefaultUserPhoto()); // valor vindo do banco
         acc.setMetadata("{}");
 
         acc = accountRepo.save(acc);

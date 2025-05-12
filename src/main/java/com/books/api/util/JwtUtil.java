@@ -1,8 +1,8 @@
 package com.books.api.util;
 
+import com.books.api.config.Config;
 import com.books.api.model.Account;
 import com.books.api.repository.AccountRepository;
-import com.books.api.service.ConfigService;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
@@ -19,15 +19,15 @@ import java.util.Map;
 @RequiredArgsConstructor
 public class JwtUtil {
 
-    private final ConfigService config;
+    private final Config config;
     private SecretKey key;
     private long expiration;
 
     @PostConstruct
     public void init() {
-        String secret = config.get("secretKey");
+        String secret = config.getSecretKey();
         this.key = Keys.hmacShaKeyFor(secret.getBytes());
-        this.expiration = config.getInt("tokenMaxAge") * 60L * 60L * 1000L;
+        this.expiration = config.getTokenMaxAge() * 3600L;
     }
 
     public String generateToken(String subject, Map<String, Object> claims) {
@@ -95,6 +95,4 @@ public class JwtUtil {
                 .filter(acc -> acc.getStatus() == Account.Status.ON)
                 .orElse(null);
     }
-
-
 }

@@ -1,13 +1,14 @@
 package com.books.api.util;
 
+import com.books.api.config.Config;
 import com.books.api.model.Account;
-import com.books.api.service.ConfigService;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
+
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -15,14 +16,14 @@ import java.nio.charset.StandardCharsets;
 @RequiredArgsConstructor
 public class CookieUtil {
 
-    private final ConfigService config;
+    private final Config config;
 
     public void cookieToken(String token, HttpServletResponse response) {
         Cookie cookie = new Cookie("token", token);
         cookie.setPath("/");
         cookie.setHttpOnly(true);
         cookie.setSecure(true);
-        cookie.setMaxAge(config.getInt("cookieMaxAge") * 3600);
+        cookie.setMaxAge(config.getCookieMaxAge() * 3600);
         response.addCookie(cookie);
     }
 
@@ -39,7 +40,7 @@ public class CookieUtil {
         cookie.setPath("/");
         cookie.setHttpOnly(false); // acessível via JS
         cookie.setSecure(true);
-        cookie.setMaxAge(config.getInt("cookieMaxAge") * 3600);
+        cookie.setMaxAge(config.getCookieMaxAge() * 3600);
         response.addCookie(cookie);
     }
 
