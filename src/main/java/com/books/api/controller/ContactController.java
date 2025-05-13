@@ -21,7 +21,7 @@ public class ContactController {
     public ResponseEntity<Map<String, Object>> createContact(@RequestBody Contact contact) {
 
         // Validação manual dos campos obrigatórios
-        if (isNullOrEmpty(contact.getName())) {
+        if (isNullOrEmpty(contact.getName())) {s
             return ResponseEntity.badRequest().body(ApiResponse.error("400", "O campo 'Nome' é obrigatório."));
         }
         if (isNullOrEmpty(contact.getEmail())) {
