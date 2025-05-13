@@ -1,7 +1,7 @@
 package com.books.api.controller;
 
-import com.books.api.model.Contacts;
-import com.books.api.repository.ContactsRepository;
+import com.books.api.model.Contact;
+import com.books.api.repository.ContactRepository;
 import com.books.api.util.ApiResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,12 +13,12 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/contact")
 @RequiredArgsConstructor
-public class ContactsController {
+public class ContactController {
 
-    private final ContactsRepository contactsRepository;
+    private final ContactRepository contactRepository;
 
     @PostMapping
-    public ResponseEntity<Map<String, Object>> createContact(@RequestBody Contacts contact) {
+    public ResponseEntity<Map<String, Object>> createContact(@RequestBody Contact contact) {
 
         // Validação manual dos campos obrigatórios
         if (isNullOrEmpty(contact.getName())) {
@@ -36,10 +36,10 @@ public class ContactsController {
 
         // Define valores padrão
         contact.setDate(LocalDateTime.now());
-        contact.setStatus(Contacts.Status.RECEIVED);
+        contact.setStatus(Contact.Status.RECEIVED);
 
         // Salva no banco
-        Contacts saved = contactsRepository.save(contact);
+        Contact saved = contactRepository.save(contact);
 
         // Resposta de sucesso
         return ResponseEntity.ok(ApiResponse.success("201", "Contato salvo com sucesso!", saved));
