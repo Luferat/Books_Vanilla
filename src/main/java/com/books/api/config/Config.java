@@ -15,7 +15,7 @@ public class Config {
     private final String uploadUrl = "/api/account/photo"; // URL/rota base para acesso aos arquivos enviados
     private final String appName = "Book''s Vanilla"; // Nome do sistema para exibição em páginas
     private final String defaultUserPhoto = "https://randomuser.me/api/portraits/lego/1.jpg"; // URL padrão para imagem de perfil de usuário
-    private final List<String> supportedPhotoFormat = List.of("image/jpeg", "image/png");  // Tipos de imagens suportados no upload da foto
+    private final List<String> supportedPhotoFormat = List.of("image/jpeg", "image/png");  // Tipos MIME de imagens suportados no upload da foto
     private final int maxPhotoSizeMb = 10; // Tamanho máximo da foto de upload em MB (mega bytes)
     private final String defaultLang = "pt-BR"; // Idioma padrão da interface
     private final boolean maintenanceMode = false; // Se true, exibe página de manutenção para todos os usuários

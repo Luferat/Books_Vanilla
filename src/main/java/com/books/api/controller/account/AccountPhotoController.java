@@ -1,11 +1,13 @@
-package com.books.api.controller;
+package com.books.api.controller.account;
 
 import com.books.api.config.Config;
 import com.books.api.model.Account;
 import com.books.api.repository.AccountRepository;
 import com.books.api.util.ApiResponse;
+import com.books.api.util.CookieUtil;
 import com.books.api.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -32,9 +34,14 @@ public class AccountPhotoController {
     private final AccountRepository accountRepo;
     private final JwtUtil jwt;
     private final Config config;
+    private final CookieUtil cookieUtil;
 
     @PostMapping(value = "/upload/photo", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<?> uploadPhoto(@RequestParam("photo") MultipartFile photoFile, HttpServletRequest request) {
+    public ResponseEntity<?> uploadPhoto(
+            @RequestParam("photo") MultipartFile photoFile,
+            HttpServletRequest request,
+            HttpServletResponse response
+    ) {
 
         Account loggedUser = jwt.getLoggedUser(request, accountRepo);
 
@@ -69,6 +76,11 @@ public class AccountPhotoController {
             String photoUrl = savePhotoAndGetUrl(photoFile, loggedUser.getId());
             loggedUser.setPhoto(photoUrl);
             accountRepo.save(loggedUser);
+
+            // Recriar o cookie "userdata" com a foto atualizada
+            String token = cookieUtil.getTokenFromRequest(request);
+
+            cookieUtil.cookieUser(loggedUser, token, response);
 
             Map<String, String> responseData = Map.of("photoUrl", photoUrl);
             return ResponseEntity.ok(ApiResponse.success("200", "Foto de perfil atualizada com sucesso.", responseData));

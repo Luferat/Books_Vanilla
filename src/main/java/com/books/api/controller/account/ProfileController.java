@@ -1,4 +1,4 @@
-package com.books.api.controller;
+package com.books.api.controller.account;
 
 import com.books.api.model.Account;
 import com.books.api.repository.AccountRepository;
