@@ -28,11 +28,12 @@ public class CookieUtil {
     }
 
     public void cookieUser(Account user, String token, HttpServletResponse response) {
-        String json = String.format("{\"id\":%d,\"name\":\"%s\",\"photo\":\"%s\",\"role\":\"%s\", \"token\":\"%s\"}",
+        String json = String.format("{\"id\":%d,\"name\":\"%s\",\"photo\":\"%s\",\"role\":\"%s\",\"email\":\"%s\", \"token\":\"%s\"}",
                 user.getId(),
                 user.getName(),
                 user.getPhoto(),
                 user.getRole(),
+                user.getEmail(),
                 token
         );
         String encoded = URLEncoder.encode(json, StandardCharsets.UTF_8);
