@@ -40,9 +40,6 @@ public class Book {
     @Column(nullable = false)
     private LocalDate launch;
 
-    @Column(nullable = false, columnDefinition = "DEFAULT '0'")
-    public float rentalPricePerDay;
-
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, columnDefinition = "VARCHAR(13) DEFAULT 'DISPONIVEL'")
     private Status status = Status.DISPONIVEL;
