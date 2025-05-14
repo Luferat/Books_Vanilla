@@ -37,7 +37,7 @@ public class Book {
     @Column(nullable = false)
     private String synopsis;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private LocalDate launch;
 
     @Enumerated(EnumType.STRING)
