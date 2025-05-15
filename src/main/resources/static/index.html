@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Book's Vanilla</title>
+    <link rel="stylesheet" href="./css/global.css">
+</head>
+<header>
+    <h1>Api Book's Vanilla</h1>
+</header>
+<body>
+<div id="conteiner">
+    <div id="DOC-BLOCK">
+        <h2>POST Login</h2>
+        <p>http://localhost:8080/api/account/login</p>
+        <p>Aceita "email" e "password"</p>
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>alice@example.com</td>
+            </tr>
+            <tr>
+                <td>Password</td>
+                <td>Senha123</td>
+            </tr>
+        </table>
+        <pre>{
+    "email": "alice@example.com",
+    "password": "Senha123"
+}</pre>
+    </div>
+    <div id="DOC-BLOCK">
+        <h2>POST Logout</h2>
+        <p>http://localhost:8080/api/account/logout</p>
+        <p>Faz o logout</p>
+    </div>
+    <div id="DOC-BLOCK">
+        <h2>Authorization</h2>
+        <p>Checar se o Usuario está autorizaro</p>
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>Alice Silva</td>
+            </tr>
+            <tr>
+                <td>Tel</td>
+                <td>(21) 99999-0001</td>
+            </tr>
+            <tr>
+                <td>Address</td>
+                <td>Rua das Flores, 123</td>
+            </tr>
+        </table>
+        <pre>
+{
+    "name": "Alice Silva",
+    "tel": "(21) 99999-0001",
+    "address": "Rua das Flores, 123"
+}
+</pre>
+
+
+    </div>
+    <div id="DOC-BLOCK">
+        <h2>PATCH Password Change</h2>
+        <p>http://localhost:8080/api/account/password</p>
+        <p>Alterar a Senha</p>
+        <table>
+            <tr>
+                <th>Key</th>
+                <th>Value</th>
+            </tr>
+            <tr>
+                <td>Email</td>
+                <td>alice@example.com</td>
+            </tr>
+            <tr>
+                <td>Actual</td>
+                <td>Senha123</td>
+            </tr>
+            <tr>
+                <td>New1</td>
+                <td>Senha123</td>
+            </tr>
+            <tr>
+                <td>New2</td>
+                <td>Senha123</td>
+            </tr>
+        </table>
+        <pre>
+    {
+        "email": "alice@example.com",
+        "actual": "Senha123",
+        "new1": "Senha123",
+        "new2": "Senha123"
+    }
+</pre>
+    </div>
+    <div id= "DOC-BLOCK" >
+        <h2> POST Password Recovery</h2>
+        <p> http://localhost:8080/api/account/recovery </p>
+        <p> Recupera a Senha</p>
+
+        <table>
+            <tr>
+                <th> Key</th>
+                <th> Value</th>
+            </tr>
+            <tr>
+                <td> Email</td>
+                <td>bruno@example.com</td>
+            </tr>
+            <tr>
+                <td>CPF</td>
+                <td>23456789012</td>
+            </tr>
+            <tr>
+                <td>Birth</td>
+                <td>1988-07-22</td>
+            </tr>
+
+        </table>
+        <pre>
+    {
+        "email": "bruno@example.com",
+        "cpf": "23456789012",
+        "birth": "1988-07-22"
+    }
+</pre>
+
+    </div>
+
+    <div id="DOC-BLOCK">
+        <h2>POST Create</h2>
+        <p>http://localhost:8080/api/account/create</p>
+        <p> Criar Conta de Usuario</p>
+
+        <table>
+            <tr>
+                <th>Key</th>
+                <th> Value</th>
+            </tr>
+
+            <tr>
+                <td>name</td>
+                <td>Hemegarda Sirigarda</td>
+            </tr>
+            <tr>
+                <td>email</td>
+                <td>mengarda@email.com</td>
+            </tr>
+            <tr>
+                <td>password</td>
+                <td>Senha123</td>
+            </tr>
+            <tr>
+                <td>password2</td>
+                <td>Senha123</td>
+            </tr>
+            <tr>
+                <td>cpf</td>
+                <td>99999887765</td>
+            </tr>
+            <tr>
+                <td>tel</td>
+                <td>(21) 66778-9900</td>
+            </tr>
+            <tr>
+                <td>birth</td>
+                <td>1987-10-20</td>
+            </tr>
+            <tr>
+                <td>address</td>
+                <td>Rua do Siri Molhado, 22</td>
+            </tr>
+
+
+        </table>
+
+
+        <pre>
+    {
+        "name": "Hemegarda Sirigarda",
+        "email": "mengarda@email.com",
+        "password": "Senha123",
+        "password2": "Senha123",
+        "cpf": "99999887765",
+        "tel": "(21) 66778-9900",
+        "birth": "1987-10-20",
+        "address": "Rua do Siri Molhado, 22"
+    }
+</pre>
+
+
+    </div>
+
+</div>
+
+
+</body>
+</html>
