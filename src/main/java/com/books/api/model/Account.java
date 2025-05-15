@@ -23,40 +23,30 @@ public class Account {
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", updatable = false, insertable = false)
     private LocalDateTime createdAt;
 
-    @Column(nullable = false)
+    private String photo;
+    private String tel;
+    private LocalDate birth;
     private String name;
-
+	
     @Column(nullable = false, unique = true)
     private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
-    private String photo;
 
     @Column(nullable = false, unique = true)
     private String cpf;
 
-    // @Column(unique = true)
-    private String tel;
-
-    @Column(nullable = false)
-    private LocalDate birth;
-
-    @Lob
-    private String address;
+    private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(10) DEFAULT 'USER'")
     private Role role = Role.USER;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(3) DEFAULT 'ON'")
     private Status status = Status.ON;
 
     @Lob
     private String metadata;
+	
+    @Lob
+    private String address;
 
     public enum Role {
         USER,
