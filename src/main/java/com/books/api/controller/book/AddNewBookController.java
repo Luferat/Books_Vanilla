@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.Map;
 
 @RestController
@@ -31,34 +32,44 @@ public class AddNewBookController {
     @PostMapping("/new")
     public ResponseEntity<?> newBook(@RequestBody Map<String, String> body, HttpServletRequest request){
 
-        String[] require = {"title", "author", "publicationyear"};
-        for(String key : require){
-            if(body.get(key).isBlank()){
-                return ResponseEntity.badRequest().body(ApiResponse.error("400", "O campo '" + key + "' é obrigatório."));
+            String[] require = {"title", "author", "publicationyear"};
+            for(String key : require){
+                if(body.get(key).isBlank()){
+                    return ResponseEntity.badRequest().body(ApiResponse.error("400", "O campo '" + key + "' é obrigatório."));
+                }
             }
-        }
 
-        Book book = new Book();
-
+            Book book = new Book();
 
 
+            book.setId(null);
 
-        book.setAuthor(body.get("author"));
-        System.out.println("Autor: " + book.getAuthor());
+            book.setLaunch(LocalDate.now());
 
-        book.setTitle(body.get("title"));
-        System.out.println("Título: " + book.getTitle());
+            book.setStatus(Book.Status.DISPONIVEL);
 
-        book.setPublicationYear(Integer.parseInt(body.get("publicationyear")));
-        System.out.println("Ano de publicação: " + book.getPublicationYear());
+            book.setAuthor(body.get("author"));
+            System.out.println("Autor: " + book.getAuthor());
 
-        book.setIsbn(body.get("isbn"));
-        System.out.println("Isbn: " + book.getIsbn());
+            book.setTitle(body.get("title"));
+            System.out.println("Título: " + book.getTitle());
 
-        book.setGenre(body.get("genre"));
-        System.out.println("Genero do livro: " + book.getGenre());
+            book.setPublicationYear(Integer.parseInt(body.get("publicationyear")));
+            System.out.println("Ano de publicação: " + book.getPublicationYear());
 
-        return ResponseEntity.ok(ApiResponse.success("201", "Livro registrado com sucesso."));
+            book.setIsbn(body.get("isbn"));
+            System.out.println("Isbn: " + book.getIsbn());
+
+            book.setGenre(body.get("genre"));
+            System.out.println("Genero do livro: " + book.getGenre());
+
+            book.setPhoto(body.get("photo"));
+
+            book.setSynopsis(body.get("synopsis"));
+
+            book = bookRepo.save(book);
+
+            return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
 }
