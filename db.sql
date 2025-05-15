@@ -12,3 +12,4 @@ INSERT INTO account (created_at, name, email, password, birth, photo, cpf, addre
 (CURRENT_TIMESTAMP - 33, 'Henrique Dias', 'henrique@example.com', '$2a$10$BHK0MMBsx/2EAuWLkkG6J.GCNq790dkJL.Iwvknrnx7eI/rFZt9da', '1985-02-28', 'https://randomuser.me/api/portraits/men/88.jpg', '89012345678', 'Av. Liberdade, 258', '11999990008', 'USER', 'ON', '{}'),
 (CURRENT_TIMESTAMP - 22, 'Isabela Ferreira', 'isabela@example.com', '$2a$10$BHK0MMBsx/2EAuWLkkG6J.GCNq790dkJL.Iwvknrnx7eI/rFZt9da', '1994-06-05', 'https://randomuser.me/api/portraits/women/99.jpg', '90123456789', 'Rua Harmonia, 369', '11999990009', 'USER', 'ON', '{}'),
 (CURRENT_TIMESTAMP - 11, 'João Pedro', 'joao@example.com', '$2a$10$BHK0MMBsx/2EAuWLkkG6J.GCNq790dkJL.Iwvknrnx7eI/rFZt9da', '1993-12-03', 'https://randomuser.me/api/portraits/men/01.jpg', '01234567890', 'Av. da Paz, 159', '11999990010', 'USER', 'ON', '{}');
+
