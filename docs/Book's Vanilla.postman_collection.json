@@ -19,7 +19,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"alice@example.com\",\r\n    \"password\": \"Senha123\"\r\n}",
+							"raw": "{\r\n    \"email\": \"joca@email.com\",\r\n    \"password\": \"Senha123\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -68,24 +68,12 @@
 				},
 				{
 					"name": "Check",
-					"protocolProfileBehavior": {
-						"disableBodyPruning": true
-					},
 					"request": {
 						"auth": {
 							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
 							"raw": "http://localhost:8080/api/account/check",
 							"protocol": "http",
@@ -106,14 +94,7 @@
 					"name": "Profile",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IkFETUlOIiwiaWQiOjEsImlhdCI6MTc0NjgwNTQ1MiwiZXhwIjoxNzQ2OTc4MjUyfQ.NwSKk9nfOVu8grU6_RBTaBV9KQQgDsNwKmSPZH1fO3Q",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
@@ -137,14 +118,7 @@
 					"name": "Edit",
 					"request": {
 						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IkFETUlOIiwiaWQiOjEsImlhdCI6MTc0NjgwNzY4MSwiZXhwIjoxNzQ2OTgwNDgxfQ.9f-jakYSdgvCVGRGa5jsjz181fJcI3BK0U7mOwxSR9g",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "PUT",
 						"header": [],
@@ -177,7 +151,14 @@
 					"name": "Password Change",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwicm9sZSI6IkFETUlOIiwiaWQiOjEsImlhdCI6MTc0NjgxNjc3OSwiZXhwIjoxNzQ2OTg5NTc5fQ.fUrWUzsgnI1_3bHzQXIQKuMe3gHZ6gcaTEsyTXwEOe4",
+									"type": "string"
+								}
+							]
 						},
 						"method": "PATCH",
 						"header": [],
@@ -210,13 +191,20 @@
 					"name": "Password Recovery",
 					"request": {
 						"auth": {
-							"type": "noauth"
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhbGljZUBleGFtcGxlLmNvbSIsInJvbGUiOiJBRE1JTiIsIm5hbWUiOiJBbGljZSBTaWx2YSIsImlkIjoxLCJlbWFpbCI6ImFsaWNlQGV4YW1wbGUuY29tIiwiaWF0IjoxNzQ2NjU4NDMxLCJleHAiOjE3NDY2NjU2MzF9.InYde9LdklVZdC3Afh1V6TE2aj9xGsfQ5zAkHooBcVw",
+									"type": "string"
+								}
+							]
 						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"email\": \"bruno@example.com\",\r\n    \"cpf\": \"23456789012\",\r\n    \"birth\": \"1988-07-22\"\r\n}",
+							"raw": "{\r\n    \"email\": \"alice@example.com\",\r\n    \"cpf\": \"12345678901\",\r\n    \"birth\": \"1995-03-15\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -249,7 +237,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Hemegarda Sirigarda\", \r\n    \"email\": \"mengarda@email.com\",\r\n    \"password\": \"Senha123\",\r\n    \"password2\": \"Senha123\",\r\n    \"cpf\": \"99999887765\",\r\n    \"tel\": \"(21) 66778-9900\",\r\n    \"birth\": \"1987-10-20\",\r\n    \"address\": \"Rua do Siri Molhado, 22\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Hemegarda Sirigarda\", \r\n    \"email\": \"hemengarda@email.com\",\r\n    \"password\": \"Senha123\",\r\n    \"password2\": \"Senha123\",\r\n    \"cpf\": \"99999999999\",\r\n    \"tel\": \"(21) 66778-9901\",\r\n    \"birth\": \"1987-10-20\",\r\n    \"address\": \"Rua do Siri Molhado, 22\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -271,8 +259,253 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Change Photo",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/andre.ataide/Luferat/java/Barbas_Vanilla/uploads/3ea5102c-55a6-4203-a570-a8fa4c602e59.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/account/upload/photo",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"upload",
+								"photo"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/account/delete",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"account",
+								"delete"
+							]
+						}
+					},
+					"response": []
 				}
 			]
+		},
+		{
+			"name": "Book",
+			"item": [
+				{
+					"name": "List All By Id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/andre.ataide/Luferat/java/Barbas_Vanilla/uploads/3ea5102c-55a6-4203-a570-a8fa4c602e59.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/book/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"book",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Order By",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "photo",
+									"type": "file",
+									"src": "/C:/Users/andre.ataide/Luferat/java/Barbas_Vanilla/uploads/3ea5102c-55a6-4203-a570-a8fa4c602e59.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/book/list/title/asc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"book",
+								"list",
+								"title",
+								"asc"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/book/delete/8",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"book",
+								"delete",
+								"8"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "View By Id",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/book/view/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"book",
+								"view",
+								"6"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Contacts",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Joquinha\",\r\n    \"email\": \"jocadasilvajoquinha@gmail.com\",\r\n    \"subject\": \"Teste de contato\",\r\n    \"message\": \"Mensagem de teste de contato\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/contact",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"contact"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Status & Config",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/status",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"status"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
