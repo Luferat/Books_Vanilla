@@ -1,6 +1,7 @@
 package com.books.api.controller.book;
 
 import com.books.api.config.Config;
+import com.books.api.model.Account;
 import com.books.api.model.Book;
 import com.books.api.repository.AccountRepository;
 import com.books.api.repository.BookRepository;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.time.LocalDate;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/book")
@@ -25,13 +27,33 @@ import java.util.Map;
 public class AddNewBookController {
 
     @Autowired
-    private final BookRepository bookRepo;
-
+    private final BookRepository bookRepository;
+    private final AccountRepository accountRepository;
     private final JwtUtil jwt;
+
 
     @PostMapping("/new")
     public ResponseEntity<?> newBook(@RequestBody Map<String, String> body, HttpServletRequest request){
 
+
+            String token = jwt.extractTokenFromCookies(request);
+            Long userId = jwt.getUserId(token);
+            Account loggedUser = jwt.getLoggedUser(request, accountRepository);
+
+            // Impede usuários não logados de adicionarem novos livros
+            if (loggedUser == null) {
+                return ResponseEntity.status(403).body(ApiResponse.error("403", "Logue para adicionar livros."));
+            }
+
+            Account account = accountRepository.findById(userId).orElse(null);
+
+            //Impede usuários comuns de adicionarem novos livros
+            if(account.getRole() != Account.Role.ADMIN){
+                return ResponseEntity.status(403).body(ApiResponse.error("403", "Apenas Administradores podem adicionar livros"));
+            }
+
+
+            // Verifica se os campos estão preenchidos
             String[] require = {"title", "author", "publicationyear"};
             for(String key : require){
                 if(body.get(key).isBlank()){
@@ -41,34 +63,17 @@ public class AddNewBookController {
 
             Book book = new Book();
 
-
             book.setId(null);
-
             book.setLaunch(LocalDate.now());
-
             book.setStatus(Book.Status.DISPONIVEL);
-
             book.setAuthor(body.get("author"));
-            System.out.println("Autor: " + book.getAuthor());
-
             book.setTitle(body.get("title"));
-            System.out.println("Título: " + book.getTitle());
-
             book.setPublicationYear(Integer.parseInt(body.get("publicationyear")));
-            System.out.println("Ano de publicação: " + book.getPublicationYear());
-
             book.setIsbn(body.get("isbn"));
-            System.out.println("Isbn: " + book.getIsbn());
-
             book.setGenre(body.get("genre"));
-            System.out.println("Genero do livro: " + book.getGenre());
-
             book.setPhoto(body.get("photo"));
-
             book.setSynopsis(body.get("synopsis"));
-
-            book = bookRepo.save(book);
-
+            book = bookRepository.save(book);
             return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
 
