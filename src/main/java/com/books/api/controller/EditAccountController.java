@@ -15,7 +15,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("/api/account")
 @RequiredArgsConstructor
-public class EditAccountController {
+public class    EditAccountController {
 
     private final JwtUtil jwtUtil;
     private final AccountRepository accountRepository;
