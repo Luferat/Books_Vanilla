@@ -1,4 +1,4 @@
-package com.books.api.controller;
+package com.books.api.controller.account;
 
 import com.books.api.util.ApiResponse;
 import com.books.api.util.CookieUtil;
