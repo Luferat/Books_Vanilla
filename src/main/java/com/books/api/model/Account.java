@@ -23,9 +23,16 @@ public class Account {
     @Column(columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP", updatable = false, insertable = false)
     private LocalDateTime createdAt;
 
+    @Column(nullable = false)
     private String photo;
+
+    @Column(nullable = false)
     private String tel;
+
+    @Column(nullable = false)
     private LocalDate birth;
+
+    @Column(nullable = false)
     private String name;
 	
     @Column(nullable = false, unique = true)
@@ -34,6 +41,7 @@ public class Account {
     @Column(nullable = false, unique = true)
     private String cpf;
 
+    @Column(nullable = false)
     private String password;
 
     @Enumerated(EnumType.STRING)

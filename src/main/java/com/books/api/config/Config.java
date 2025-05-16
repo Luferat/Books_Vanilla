@@ -1,13 +1,19 @@
 package com.books.api.config;
 
 import lombok.Getter;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 @Component
+@Configuration
 @Getter
-public class Config {
+public class Config implements WebMvcConfigurer {
     private final int cookieMaxAge = 48; //Tempo de vida do cookie em horas
     private final int tokenMaxAge = 48; // Tempo de vida do token JWT em horas
     private final String secretKey = "xcmzyCqUEFvjq1dU6hHje4slO9mI0A0K8RIcVddJklY=y44fn898gt308htv32ht4108h32gd"; // Chave secreta para geração de tokens JWT ou similares
@@ -22,4 +28,13 @@ public class Config {
     private final String apiVersion = "v1"; // Versão atual da API
     private final String supportEmail = "suporte@books.com"; // E-mail de contato do suporte técnico
     private final boolean httpsOn = false; // true somente se estiver usando HTTP. Afeta os cookies.
+
+    // Permite acesso http(s) às fotos de perfil
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        Path uploadPath = Paths.get(getUploadDir());
+        String uploadLocation = "file:" + uploadPath.toAbsolutePath() + "/";
+        registry.addResourceHandler(getUploadUrl() + "/**")
+                .addResourceLocations(uploadLocation);
+    }
 }
