@@ -62,6 +62,8 @@ public class Book {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
+    private Integer stock;
+
     public enum Status {
         ON,
         OFF

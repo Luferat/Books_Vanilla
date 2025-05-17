@@ -232,6 +232,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(3)
                         .build(),
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(67))
@@ -257,6 +258,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(54.90))
+                        .stock(3)
                         .build(),
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(56))
@@ -282,6 +284,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(99.50))
+                        .stock(2)
                         .build(),
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(45))
@@ -307,6 +310,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(1)
                         .build(),
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(34))
@@ -332,6 +336,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(2)
                         .build(),
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(23))
@@ -357,6 +362,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(3)
                         .build(),
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(12))
@@ -382,6 +388,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(4)
                         .build(),
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(10))
@@ -407,6 +414,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(5)
                         .build()
         );
         bookRepository.saveAll(books);
