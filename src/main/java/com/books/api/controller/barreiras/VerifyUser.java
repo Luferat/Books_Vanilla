@@ -27,16 +27,14 @@ public class VerifyUser {
         Long userId = jwt.getUserId(token);
         Account loggedUser = jwt.getLoggedUser(request, accountRepository);
 
-        // Impede usuários não logados de adicionarem novos livros
         if (loggedUser == null) {
-            return ResponseEntity.status(403).body(ApiResponse.error("403", "Logue para adicionar livros."));
+            return ResponseEntity.status(403).body(ApiResponse.error("403", "Logue para adicionar livros à sua biblioteca."));
         }
 
         Account account = accountRepository.findById(userId).orElse(null);
 
-        //Impede usuários comuns de adicionarem novos livros
         if(account.getRole() != Account.Role.ADMIN && account.getRole() != Account.Role.OPERATOR){
-            return ResponseEntity.status(403).body(ApiResponse.error("403", "Apenas administradores e operadores podem adicionar livros"));
+            return ResponseEntity.status(403).body(ApiResponse.error("403", "Apenas administradores e operadores podem gerenciar livros"));
         }
 
         return ResponseEntity.status(200).body(ApiResponse.error("200", "sucesso"));
