@@ -232,7 +232,9 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(15)
                         .build(),
+
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(67))
                         .title("O Senhor dos Anéis: A Sociedade do Anel")
@@ -257,7 +259,9 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(54.90))
+                        .stock(12)
                         .build(),
+
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(56))
                         .title("Neuromancer")
@@ -282,7 +286,9 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(99.50))
+                        .stock(20)
                         .build(),
+
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(45))
                         .title("Orgulho e Preconceito")
@@ -307,7 +313,9 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(10)
                         .build(),
+
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(34))
                         .title("Dom Casmurro")
@@ -332,7 +340,9 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(18)
                         .build(),
+
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(23))
                         .title("Sapiens: Uma Breve História da Humanidade")
@@ -357,7 +367,9 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(25)
                         .build(),
+
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(12))
                         .title("O Conto da Aia")
@@ -382,7 +394,9 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(14)
                         .build(),
+
                 Book.builder()
                         .createdAt(LocalDateTime.now().minusDays(10))
                         .title("Clean Code: A Handbook of Agile Software Craftsmanship")
@@ -407,6 +421,7 @@ public class DataInitializer {
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(99.90))
+                        .stock(30)
                         .build()
         );
         bookRepository.saveAll(books);

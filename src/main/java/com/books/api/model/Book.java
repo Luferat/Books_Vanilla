@@ -36,6 +36,8 @@ public class Book {
     @Column(nullable = false)
     private Integer publicationYear;
 
+
+
     private Integer editionNumber;
     private String publicationPlace;
     private Integer numberOfPages;
@@ -61,6 +63,9 @@ public class Book {
 
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
+
+    @Column(nullable = false)
+    private Integer stock;
 
     public enum Status {
         ON,
