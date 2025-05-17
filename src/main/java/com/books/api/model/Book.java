@@ -40,6 +40,9 @@ public class Book {
     @Column(nullable = false)
     private LocalDate launch;
 
+    @Column(nullable = false)
+    private int quantity;
+
     @Enumerated(EnumType.STRING)
     @Column(nullable = false, columnDefinition = "VARCHAR(13) DEFAULT 'DISPONIVEL'")
     private Status status = Status.DISPONIVEL;

@@ -1038,3 +1038,15 @@ org.h2.jdbc.JdbcSQLNonTransientException: Unknown data type: "DEFAULT"; SQL stat
 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
 	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
 	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:50)
+2025-05-16 18:47:09.713621-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELET FROM BOOKS"; expected "DELETE, DROP"; SQL statement:
+DELET FROM BOOKS [42001-232]
+2025-05-16 18:47:18.842122-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELET FROM BOOKS"; expected "DELETE, DROP"; SQL statement:
+DELET FROM BOOKS [42001-232]
+2025-05-16 18:47:49.813903-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DROP [*]FROM BOOKS"; expected "TABLE, INDEX, USER, SEQUENCE, CONSTANT, TRIGGER, MATERIALIZED, VIEW, ROLE, ALIAS, SCHEMA, ALL OBJECTS, DOMAIN, TYPE, AGGREGATE, SYNONYM"; SQL statement:
+DROP FROM BOOKS [42001-232]
+2025-05-16 18:48:07.710430-03:00 jdbc[13]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "[*]DELET FROM BOOKS"; expected "DELETE, DROP"; SQL statement:
+DELET FROM BOOKS [42001-232]
