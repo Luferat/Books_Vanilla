@@ -1,0 +1,240 @@
+package com.books.api.config;
+
+import com.books.api.model.Account;
+import com.books.api.model.Book;
+import com.books.api.repository.AccountRepository;
+import com.books.api.repository.BookRepository;
+import jakarta.annotation.PostConstruct;
+import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Component;
+
+import java.math.BigDecimal;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Component
+@RequiredArgsConstructor
+public class DataInitializer {
+
+    private final AccountRepository accountRepository;
+    private final BookRepository bookRepository;
+
+    @PostConstruct
+    public void init() {
+
+        if (bookRepository.count() == 0) {
+            populateBooks();
+        }
+    }
+
+
+
+
+    private void populateBooks() {
+        List<Book> books = List.of(
+                Book.builder()
+                        .createdAt(LocalDateTime.now().minusDays(78))
+                        .title("A Guerra dos Tronos")
+                        .author("George R. R. Martin")
+                        .isbn("978-8556510342")
+                        .publisher("Suma de Letras")
+                        .publicationYear(2019)
+                        .editionNumber(1)
+                        .publicationPlace("Rio de Janeiro, Brasil")
+                        .numberOfPages(608)
+                        .genre("Fantasia")
+                        .format("Brochura")
+                        .accessUrl(null)
+                        .fileFormat(null)
+                        .hasDrm(false)
+                        .language("Português")
+                        .synopsis("Primeiro livro da épica série de fantasia...")
+                        .keywords("fantasia, idade média, dragões")
+                        .coverImageUrl("https://picsum.photos/297/397")
+                        .translator(null)
+                        .originalLanguage("Inglês")
+                        .status(Book.Status.ON)
+                        .ebook(false)
+                        .price(BigDecimal.valueOf(99.90))
+                        .build(),
+                Book.builder()
+                        .createdAt(LocalDateTime.now().minusDays(67))
+                        .title("O Senhor dos Anéis: A Sociedade do Anel")
+                        .author("J.R.R. Tolkien")
+                        .isbn("978-8533603148")
+                        .publisher("Martins Fontes")
+                        .publicationYear(2006)
+                        .editionNumber(1)
+                        .publicationPlace("São Paulo, Brasil")
+                        .numberOfPages(576)
+                        .genre("Fantasia")
+                        .format("Brochura")
+                        .accessUrl(null)
+                        .fileFormat(null)
+                        .hasDrm(false)
+                        .language("Português")
+                        .synopsis("Um hobbit recebe um anel mágico e embarca em uma jornada...")
+                        .keywords("fantasia, aventura, hobbits")
+                        .coverImageUrl("https://picsum.photos/298/398")
+                        .translator(null)
+                        .originalLanguage("Inglês")
+                        .status(Book.Status.ON)
+                        .ebook(false)
+                        .price(BigDecimal.valueOf(54.90))
+                        .build(),
+                Book.builder()
+                        .createdAt(LocalDateTime.now().minusDays(56))
+                        .title("Neuromancer")
+                        .author("William Gibson")
+                        .isbn("978-8576571770")
+                        .publisher("Aleph")
+                        .publicationYear(2013)
+                        .editionNumber(1)
+                        .publicationPlace("São Paulo, Brasil")
+                        .numberOfPages(320)
+                        .genre("Ficção Científica")
+                        .format("Brochura")
+                        .accessUrl(null)
+                        .fileFormat("epub")
+                        .hasDrm(true)
+                        .language("Português")
+                        .synopsis("Um hacker de computador decadente é contratado para um último trabalho...")
+                        .keywords("cyberpunk, ficção científica, inteligência artificial")
+                        .coverImageUrl("https://picsum.photos/299/399")
+                        .translator(null)
+                        .originalLanguage("Inglês")
+                        .status(Book.Status.ON)
+                        .ebook(false)
+                        .price(BigDecimal.valueOf(99.50))
+                        .build(),
+                Book.builder()
+                        .createdAt(LocalDateTime.now().minusDays(45))
+                        .title("Orgulho e Preconceito")
+                        .author("Jane Austen")
+                        .isbn("978-8595081504")
+                        .publisher("Penguin-Companhia")
+                        .publicationYear(2017)
+                        .editionNumber(1)
+                        .publicationPlace("São Paulo, Brasil")
+                        .numberOfPages(432)
+                        .genre("Romance")
+                        .format("Brochura")
+                        .accessUrl(null)
+                        .fileFormat(null)
+                        .hasDrm(false)
+                        .language("Português")
+                        .synopsis("A história das turbulentas relações entre Elizabeth Bennet e Mr. Darcy...")
+                        .keywords("romance, clássico, inglaterra")
+                        .coverImageUrl("https://picsum.photos/300/400")
+                        .translator(null)
+                        .originalLanguage("Inglês")
+                        .status(Book.Status.ON)
+                        .ebook(false)
+                        .price(BigDecimal.valueOf(99.90))
+                        .build(),
+                Book.builder()
+                        .createdAt(LocalDateTime.now().minusDays(34))
+                        .title("Dom Casmurro")
+                        .author("Machado de Assis")
+                        .isbn("978-8524790093")
+                        .publisher("Ática")
+                        .publicationYear(2019)
+                        .editionNumber(null)
+                        .publicationPlace("São Paulo, Brasil")
+                        .numberOfPages(288)
+                        .genre("Romance")
+                        .format("Brochura")
+                        .accessUrl(null)
+                        .fileFormat("pdf")
+                        .hasDrm(false)
+                        .language("Português")
+                        .synopsis("A narrativa em primeira pessoa de Bento Santiago, o Dom Casmurro...")
+                        .keywords("romance, literatura brasileira, clássico")
+                        .coverImageUrl("https://picsum.photos/301/401")
+                        .translator(null)
+                        .originalLanguage("Português")
+                        .status(Book.Status.ON)
+                        .ebook(false)
+                        .price(BigDecimal.valueOf(99.90))
+                        .build(),
+                Book.builder()
+                        .createdAt(LocalDateTime.now().minusDays(23))
+                        .title("Sapiens: Uma Breve História da Humanidade")
+                        .author("Yuval Noah Harari")
+                        .isbn("978-8535927575")
+                        .publisher("Companhia das Letras")
+                        .publicationYear(2015)
+                        .editionNumber(1)
+                        .publicationPlace("São Paulo, Brasil")
+                        .numberOfPages(464)
+                        .genre("Não Ficção")
+                        .format("Brochura")
+                        .accessUrl(null)
+                        .fileFormat(null)
+                        .hasDrm(false)
+                        .language("Português")
+                        .synopsis("Uma análise da história da humanidade desde os primeiros humanos até o presente...")
+                        .keywords("história, ciência, humanidade")
+                        .coverImageUrl("https://picsum.photos/302/402")
+                        .translator(null)
+                        .originalLanguage("Hebraico")
+                        .status(Book.Status.ON)
+                        .ebook(true)
+                        .price(BigDecimal.valueOf(99.90))
+                        .build(),
+                Book.builder()
+                        .createdAt(LocalDateTime.now().minusDays(12))
+                        .title("O Conto da Aia")
+                        .author("Margaret Atwood")
+                        .isbn("978-8532530783")
+                        .publisher("Rocco")
+                        .publicationYear(2017)
+                        .editionNumber(1)
+                        .publicationPlace("Rio de Janeiro, Brasil")
+                        .numberOfPages(400)
+                        .genre("Ficção Distópica")
+                        .format("Brochura")
+                        .accessUrl(null)
+                        .fileFormat("epub")
+                        .hasDrm(true)
+                        .language("Português")
+                        .synopsis("Em uma república totalitária chamada Gilead...")
+                        .keywords("distopia, feminismo, política")
+                        .coverImageUrl("https://picsum.photos/303/403")
+                        .translator("Não Informado")
+                        .originalLanguage("Inglês")
+                        .status(Book.Status.ON)
+                        .ebook(true)
+                        .price(BigDecimal.valueOf(99.90))
+                        .build(),
+                Book.builder()
+                        .createdAt(LocalDateTime.now().minusDays(10))
+                        .title("Clean Code: A Handbook of Agile Software Craftsmanship")
+                        .author("Robert C. Martin")
+                        .isbn("978-0132350884")
+                        .publisher("Prentice Hall")
+                        .publicationYear(2008)
+                        .editionNumber(1)
+                        .publicationPlace("Upper Saddle River, USA")
+                        .numberOfPages(464)
+                        .genre("Não Ficção")
+                        .format("E-book")
+                        .accessUrl("https://example.com/clean-code.epub")
+                        .fileFormat("epub")
+                        .hasDrm(false)
+                        .language("Inglês")
+                        .synopsis("Even bad code can function. But if code isn’t clean...")
+                        .keywords("programação, desenvolvimento de software, boas práticas")
+                        .coverImageUrl("https://picsum.photos/304/404")
+                        .translator(null)
+                        .originalLanguage("Inglês")
+                        .status(Book.Status.ON)
+                        .ebook(true)
+                        .price(BigDecimal.valueOf(99.90))
+                        .build()
+        );
+        bookRepository.saveAll(books);
+    }
+}

@@ -33,10 +33,22 @@ public class Booking {
     // Data e hora em que o agendamento foi feito
     private LocalDateTime bookingDate;
 
+    private LocalDateTime scheduledFor; //data agendada para retirada do livro.
+
     // Data e hora em que o livro foi devolvido
     private LocalDateTime returnDate;
 
     // Status atual do agendamento (ex: AGENDADO, DEVOLVIDO, CANCELADO...)
     @Enumerated(EnumType.STRING) // Salva o valor do enum como texto (e não como número)
     private BookingStatus status;
+
+    public enum BookingStatus {
+        SCHEDULED,
+        UPDATED,
+        RETURNED,
+        CANCELED
+    }
+
+
+
 }

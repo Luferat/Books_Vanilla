@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Data
@@ -24,39 +25,41 @@ public class Account {
     private LocalDateTime createdAt;
 
     @Column(nullable = false)
-    private String name;
-
-    @Column(nullable = false, unique = true)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    @Column(nullable = false)
     private String photo;
 
-    @Column(nullable = false, unique = true)
-    private String cpf;
-
-    // @Column(unique = true)
+    @Column(nullable = false)
     private String tel;
 
     @Column(nullable = false)
     private LocalDate birth;
 
-    @Lob
-    private String address;
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false, unique = true)
+    private String email;
+
+    @Column(nullable = false, unique = true)
+    private String cpf;
+
+    @Column(nullable = false)
+    private String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(10) DEFAULT 'USER'")
     private Role role = Role.USER;
 
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false, columnDefinition = "VARCHAR(3) DEFAULT 'ON'")
     private Status status = Status.ON;
 
     @Lob
     private String metadata;
+
+    @Lob
+    private String address;
+
+    @OneToMany(mappedBy = "account")
+    private List<Schedule> schedules;
+
 
     public enum Role {
         USER,
