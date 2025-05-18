@@ -6,9 +6,11 @@ import com.books.api.model.Book;
 import com.books.api.repository.AccountRepository;
 import com.books.api.repository.BookRepository;
 import com.books.api.util.ApiResponse;
+import com.books.api.util.GetNullBodyBook;
 import com.books.api.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -29,7 +31,7 @@ public class BookEditar {
     private final BookRepository bookRepository;
     private final VerifyUser verifyUser;
 
-    @PutMapping("/edit/{id}")
+    @PatchMapping("/edit/{id}")
     public ResponseEntity<?> editBook(
             @PathVariable Long id,
             @RequestBody Book updatedBook,
@@ -43,17 +45,13 @@ public class BookEditar {
             return response;
         }
 
+
         // 3. Edita livro se encontrado
         return bookRepository.findById(id)
                 .map(book -> {
-                    book.setTitle(updatedBook.getTitle());
-                    book.setAuthor(updatedBook.getAuthor());
-                    book.setPublicationYear(updatedBook.getPublicationYear());
-                    book.setPhoto(updatedBook.getPhoto());
-                    book.setGenre(updatedBook.getGenre());
-                    book.setSynopsis(updatedBook.getSynopsis());
-                    book.setStatus(updatedBook.getStatus());
-                    book.setQuantity(updatedBook.getQuantity());
+
+
+                    BeanUtils.copyProperties(updatedBook, book, GetNullBodyBook.getNullPropertyNames(updatedBook));
 
                     Book savedBook = bookRepository.save(book);
 
