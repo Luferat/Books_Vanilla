@@ -53,16 +53,13 @@ public class AddNewBookController {
             Book book = new Book();
 
             book.setId(null);
-            book.setLaunch(LocalDate.now());
-            book.setQuantity(Integer.parseInt(body.get("quantity")));
-            book.setStatus(Book.Status.DISPONIVEL);
+            book.setPrice(Integer.parseInt(body.get("price")));
+            book.setStock(Integer.parseInt(body.get("quantity")));
+            book.setStatus(Book.Status.ON);
             book.setAuthor(body.get("author"));
             book.setTitle(body.get("title"));
             book.setPublicationYear(Integer.parseInt(body.get("publicationyear")));
-            book.setIsbn(body.get("isbn"));
-            book.setGenre(body.get("genre"));
-            book.setPhoto(body.get("photo"));
-            book.setSynopsis(body.get("synopsis"));
+
             book = bookRepository.save(book);
             return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
