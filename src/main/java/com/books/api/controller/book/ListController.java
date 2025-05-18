@@ -45,14 +45,13 @@ public class ListController {
     @GetMapping("/list/{field}/{dir}")
     public ResponseEntity<?> listActiveBooksOrdered(@PathVariable String field, @PathVariable String dir) {
         Sort.Direction direction;
-        if ("desc".equalsIgnoreCase(dir)) {
-            direction = Sort.Direction.DESC;
-        } else if ("asc".equalsIgnoreCase(dir)) {
-            direction = Sort.Direction.ASC;
-        } else {
+
+        if(dir.isEmpty() || dir.isBlank() || !dir.equals("asc") && !dir.equals("desc")){
             return ResponseEntity.badRequest()
                     .body(ApiResponse.error("400", "Direção de ordenação inválida. Use 'asc' ou 'desc'."));
         }
+
+       direction = Sort.Direction.valueOf(dir.toUpperCase());
 
         Sort sort;
         sort = Sort.by(direction, field);
