@@ -41,7 +41,7 @@ public class JwtUtil {
     }
 
     public Jws<Claims> parseToken(String token) throws JwtException {
-        return Jwts.parserBuilder()
+        return Jwts.parser()
                 .setSigningKey(key)
                 .build()
                 .parseClaimsJws(token);
