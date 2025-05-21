@@ -7,7 +7,7 @@ import com.books.api.repository.BookRepository;
 import com.books.api.util.ApiResponse;
 import com.books.api.util.JwtUtil;
 import jakarta.servlet.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,18 +15,12 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/book")
+@RequiredArgsConstructor
 public class EditController {
 
     private final BookRepository bookRepository;
     private final AccountRepository accountRepository;
     private final JwtUtil jwtUtil;
-
-    @Autowired
-    public EditController(BookRepository bookRepository, AccountRepository accountRepository, JwtUtil jwtUtil) {
-        this.bookRepository = bookRepository;
-        this.accountRepository = accountRepository;
-        this.jwtUtil = jwtUtil;
-    }
 
     @PutMapping("/edit/{id}")
     public ResponseEntity<Map<String, Object>> editBook(
@@ -52,12 +46,12 @@ public class EditController {
                 .map(book -> {
                     if (updatedBook.getTitle() != null) book.setTitle(updatedBook.getTitle());
                     if (updatedBook.getAuthor() != null) book.setAuthor(updatedBook.getAuthor());
-                    if (updatedBook.getPublicationYear() != null) book.setPublicationYear(updatedBook.getPublicationYear());
+                    if (updatedBook.getPublicationYear() != null)
+                        book.setPublicationYear(updatedBook.getPublicationYear());
                     if (updatedBook.getCoverImageUrl() != null) book.setCoverImageUrl(updatedBook.getCoverImageUrl());
                     if (updatedBook.getGenre() != null) book.setGenre(updatedBook.getGenre());
                     if (updatedBook.getSynopsis() != null) book.setSynopsis(updatedBook.getSynopsis());
                     if (updatedBook.getStatus() != null) book.setStatus(updatedBook.getStatus());
-
 
                     Book savedBook = bookRepository.save(book);
                     return ResponseEntity.ok(
