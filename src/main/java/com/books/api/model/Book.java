@@ -62,7 +62,7 @@ public class Book {
     @Column(nullable = false, precision = 10, scale = 2)
     private BigDecimal price;
 
-    private Integer stock;
+    private Integer stock; // Campo adicionado
 
     public enum Status {
         ON,

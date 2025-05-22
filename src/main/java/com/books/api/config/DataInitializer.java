@@ -231,7 +231,7 @@ public class DataInitializer {
                         .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(false)
-                        .price(BigDecimal.valueOf(99.90))
+                        .price(BigDecimal.valueOf(9.90))
                         .stock(3)
                         .build(),
                 Book.builder()
@@ -257,7 +257,7 @@ public class DataInitializer {
                         .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(false)
-                        .price(BigDecimal.valueOf(54.90))
+                        .price(BigDecimal.valueOf(4.90))
                         .stock(3)
                         .build(),
                 Book.builder()
@@ -283,7 +283,7 @@ public class DataInitializer {
                         .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(false)
-                        .price(BigDecimal.valueOf(99.50))
+                        .price(BigDecimal.valueOf(9.50))
                         .stock(2)
                         .build(),
                 Book.builder()
@@ -309,7 +309,7 @@ public class DataInitializer {
                         .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(false)
-                        .price(BigDecimal.valueOf(99.90))
+                        .price(BigDecimal.valueOf(9.90))
                         .stock(1)
                         .build(),
                 Book.builder()
@@ -335,7 +335,7 @@ public class DataInitializer {
                         .originalLanguage("Português")
                         .status(Book.Status.ON)
                         .ebook(false)
-                        .price(BigDecimal.valueOf(99.90))
+                        .price(BigDecimal.valueOf(9.90))
                         .stock(2)
                         .build(),
                 Book.builder()
@@ -361,7 +361,7 @@ public class DataInitializer {
                         .originalLanguage("Hebraico")
                         .status(Book.Status.ON)
                         .ebook(true)
-                        .price(BigDecimal.valueOf(99.90))
+                        .price(BigDecimal.valueOf(9.90))
                         .stock(3)
                         .build(),
                 Book.builder()
@@ -387,7 +387,7 @@ public class DataInitializer {
                         .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(true)
-                        .price(BigDecimal.valueOf(99.90))
+                        .price(BigDecimal.valueOf(9.90))
                         .stock(4)
                         .build(),
                 Book.builder()
@@ -413,7 +413,7 @@ public class DataInitializer {
                         .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(true)
-                        .price(BigDecimal.valueOf(99.90))
+                        .price(BigDecimal.valueOf(9.90))
                         .stock(5)
                         .build()
         );
