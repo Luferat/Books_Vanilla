@@ -2,6 +2,7 @@ package com.books.api.controller.schedule;
 
 import com.books.api.model.Account;
 import com.books.api.model.Schedule;
+import com.books.api.model.ScheduleItem;
 import com.books.api.repository.AccountRepository;
 import com.books.api.repository.ScheduleRepository;
 import com.books.api.util.ApiResponse;
@@ -12,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -58,14 +60,34 @@ public class ListScheduleController {
             scheduleMap.put("account", accountInfo);
 
             // Itens do Agendamento (Livros) - já carregados eagermente
+            BigDecimal currentScheduleTotalRentalPrice = BigDecimal.ZERO; // Inicializa o preço total para este agendamento
             List<Map<String, Object>> bookItems = schedule.getItems().stream().map(item -> {
                 Map<String, Object> itemMap = new HashMap<>();
                 itemMap.put("bookId", item.getBook().getId());
                 itemMap.put("bookTitle", item.getBook().getTitle());
-                // Adicione outros detalhes do livro se necessário aqui
+                itemMap.put("bookPrice", item.getBook().getPrice()); // Adiciona o preço individual do livro no item
+
+                // Calcula o preço do aluguel para este item e adiciona ao total do agendamento
+                BigDecimal itemRentalPrice = item.getBook().getPrice().multiply(BigDecimal.valueOf(schedule.getDurationDays()));
+                itemMap.put("itemRentalPrice", itemRentalPrice); // Adiciona o preço do aluguel para este item
+
+                // Soma ao total do agendamento
+                // É importante que currentScheduleTotalRentalPrice seja final ou efetivamente final para ser usado em lambda,
+                // ou que seja um AtomicReference, ou que o cálculo seja feito após o stream.
+                // A forma mais direta aqui é acumular fora do stream e depois adicionar ao mapa.
+                // Vamos refatorar para acumular antes do stream de items.
                 return itemMap;
             }).collect(Collectors.toList());
             scheduleMap.put("books", bookItems); // Renomeado 'items' para 'books' para clareza na resposta
+
+            // Recalcular o total fora do stream para garantir a acumulação correta
+            BigDecimal calculatedTotalRentalPrice = BigDecimal.ZERO;
+            for (ScheduleItem item : schedule.getItems()) {
+                calculatedTotalRentalPrice = calculatedTotalRentalPrice.add(
+                        item.getBook().getPrice().multiply(BigDecimal.valueOf(schedule.getDurationDays()))
+                );
+            }
+            scheduleMap.put("totalRentalPrice", calculatedTotalRentalPrice); // Adiciona o preço total do aluguel para este agendamento
 
             return scheduleMap;
         }).collect(Collectors.toList());
