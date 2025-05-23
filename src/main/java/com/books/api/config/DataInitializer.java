@@ -216,7 +216,6 @@ public class DataInitializer {
                         .publisher("Suma de Letras")
                         .publicationYear(2019)
                         .editionNumber(1)
-                        .publicationPlace("Rio de Janeiro, Brasil")
                         .numberOfPages(608)
                         .genre("Fantasia")
                         .format("Brochura")
@@ -225,10 +224,7 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("Primeiro livro da épica série de fantasia...")
-                        .keywords("fantasia, idade média, dragões")
                         .coverImageUrl("https://picsum.photos/297/397")
-                        .translator(null)
-                        .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(9.90))
@@ -242,7 +238,7 @@ public class DataInitializer {
                         .publisher("Martins Fontes")
                         .publicationYear(2006)
                         .editionNumber(1)
-                        .publicationPlace("São Paulo, Brasil")
+
                         .numberOfPages(576)
                         .genre("Fantasia")
                         .format("Brochura")
@@ -251,10 +247,10 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("Um hobbit recebe um anel mágico e embarca em uma jornada...")
-                        .keywords("fantasia, aventura, hobbits")
+
                         .coverImageUrl("https://picsum.photos/298/398")
-                        .translator(null)
-                        .originalLanguage("Inglês")
+
+
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(4.90))
@@ -268,7 +264,7 @@ public class DataInitializer {
                         .publisher("Aleph")
                         .publicationYear(2013)
                         .editionNumber(1)
-                        .publicationPlace("São Paulo, Brasil")
+
                         .numberOfPages(320)
                         .genre("Ficção Científica")
                         .format("Brochura")
@@ -277,10 +273,10 @@ public class DataInitializer {
                         .hasDrm(true)
                         .language("Português")
                         .synopsis("Um hacker de computador decadente é contratado para um último trabalho...")
-                        .keywords("cyberpunk, ficção científica, inteligência artificial")
+
                         .coverImageUrl("https://picsum.photos/299/399")
-                        .translator(null)
-                        .originalLanguage("Inglês")
+
+
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(9.50))
@@ -294,7 +290,7 @@ public class DataInitializer {
                         .publisher("Penguin-Companhia")
                         .publicationYear(2017)
                         .editionNumber(1)
-                        .publicationPlace("São Paulo, Brasil")
+
                         .numberOfPages(432)
                         .genre("Romance")
                         .format("Brochura")
@@ -303,10 +299,10 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("A história das turbulentas relações entre Elizabeth Bennet e Mr. Darcy...")
-                        .keywords("romance, clássico, inglaterra")
+
                         .coverImageUrl("https://picsum.photos/300/400")
-                        .translator(null)
-                        .originalLanguage("Inglês")
+
+
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(9.90))
@@ -320,7 +316,7 @@ public class DataInitializer {
                         .publisher("Ática")
                         .publicationYear(2019)
                         .editionNumber(null)
-                        .publicationPlace("São Paulo, Brasil")
+
                         .numberOfPages(288)
                         .genre("Romance")
                         .format("Brochura")
@@ -329,10 +325,9 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("A narrativa em primeira pessoa de Bento Santiago, o Dom Casmurro...")
-                        .keywords("romance, literatura brasileira, clássico")
+
                         .coverImageUrl("https://picsum.photos/301/401")
-                        .translator(null)
-                        .originalLanguage("Português")
+
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(9.90))
@@ -346,7 +341,7 @@ public class DataInitializer {
                         .publisher("Companhia das Letras")
                         .publicationYear(2015)
                         .editionNumber(1)
-                        .publicationPlace("São Paulo, Brasil")
+
                         .numberOfPages(464)
                         .genre("Não Ficção")
                         .format("Brochura")
@@ -355,10 +350,8 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("Uma análise da história da humanidade desde os primeiros humanos até o presente...")
-                        .keywords("história, ciência, humanidade")
+
                         .coverImageUrl("https://picsum.photos/302/402")
-                        .translator(null)
-                        .originalLanguage("Hebraico")
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(9.90))
@@ -372,7 +365,6 @@ public class DataInitializer {
                         .publisher("Rocco")
                         .publicationYear(2017)
                         .editionNumber(1)
-                        .publicationPlace("Rio de Janeiro, Brasil")
                         .numberOfPages(400)
                         .genre("Ficção Distópica")
                         .format("Brochura")
@@ -381,10 +373,8 @@ public class DataInitializer {
                         .hasDrm(true)
                         .language("Português")
                         .synopsis("Em uma república totalitária chamada Gilead...")
-                        .keywords("distopia, feminismo, política")
+
                         .coverImageUrl("https://picsum.photos/303/403")
-                        .translator("Não Informado")
-                        .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(9.90))
@@ -398,7 +388,7 @@ public class DataInitializer {
                         .publisher("Prentice Hall")
                         .publicationYear(2008)
                         .editionNumber(1)
-                        .publicationPlace("Upper Saddle River, USA")
+
                         .numberOfPages(464)
                         .genre("Não Ficção")
                         .format("E-book")
@@ -407,10 +397,7 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Inglês")
                         .synopsis("Even bad code can function. But if code isn’t clean...")
-                        .keywords("programação, desenvolvimento de software, boas práticas")
                         .coverImageUrl("https://picsum.photos/304/404")
-                        .translator(null)
-                        .originalLanguage("Inglês")
                         .status(Book.Status.ON)
                         .ebook(true)
                         .price(BigDecimal.valueOf(9.90))

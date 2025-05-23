@@ -32,7 +32,6 @@ public class ViewController {
                     data.put("publisher", book.getPublisher());
                     data.put("publicationYear", book.getPublicationYear());
                     data.put("coverImageUrl", book.getCoverImageUrl());
-                    data.put("publicationPlace", book.getPublicationPlace());
                     data.put("numberOfPages", book.getNumberOfPages());
                     data.put("editionNumber", book.getEditionNumber());
                     data.put("synopsis", book.getSynopsis()); // Aqui mostramos completa
@@ -40,10 +39,9 @@ public class ViewController {
                     data.put("hasDrm", book.getHasDrm());
                     data.put("format", book.getFormat());
                     data.put("language", book.getLanguage());
-                    data.put("translator", book.getTranslator());
-                    data.put("originalLanguage", book.getOriginalLanguage());
                     data.put("ebook", book.isEbook());
                     data.put("price", book.getPrice());
+                    data.put("stock", book.getStock());
 
                     return new ResponseEntity<>(
                             ApiResponse.success("200", "Livro encontrado com sucesso", data),

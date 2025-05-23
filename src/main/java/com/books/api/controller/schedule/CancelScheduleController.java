@@ -1,8 +1,11 @@
 package com.books.api.controller.schedule;
 
 import com.books.api.model.Account;
+import com.books.api.model.Book;
 import com.books.api.model.Schedule;
+import com.books.api.model.ScheduleItem;
 import com.books.api.repository.AccountRepository;
+import com.books.api.repository.BookRepository; // Importar BookRepository
 import com.books.api.repository.ScheduleRepository;
 import com.books.api.util.ApiResponse;
 import com.books.api.util.JwtUtil;
@@ -27,6 +30,7 @@ public class CancelScheduleController {
     private final JwtUtil jwtUtil;
     private final AccountRepository accountRepository;
     private final ScheduleRepository scheduleRepository;
+    private final BookRepository bookRepository; // Injetar BookRepository
 
     @PostMapping("/cancel/{id}")
     @Transactional // Garante que a operação seja atômica
@@ -39,6 +43,8 @@ public class CancelScheduleController {
         }
 
         // 2. Buscar o Agendamento pelo ID
+        // É importante que o agendamento seja carregado com seus itens para gerenciar o estoque.
+        // Se findById não carregar eagermente, considere um método customizado no repositório.
         Optional<Schedule> scheduleOptional = scheduleRepository.findById(id);
         if (scheduleOptional.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND)
@@ -65,14 +71,24 @@ public class CancelScheduleController {
                     .body(ApiResponse.error("400", "Este agendamento já está cancelado."));
         }
 
-        // 6. Atualizar o Status do Agendamento para CANCELED
+        // 6. Reverter o estoque dos livros associados ao agendamento
+        // É crucial que os ScheduleItems e os Books estejam carregados (eagerly ou lazy dentro da transação)
+        // para que esta operação funcione corretamente.
+        if (schedule.getItems() != null) {
+            for (ScheduleItem item : schedule.getItems()) {
+                Book book = item.getBook();
+                if (book != null) {
+                    book.setStock(book.getStock() + item.getQuantity()); // Incrementa o estoque
+                    bookRepository.save(book); // Salva a atualização do livro
+                }
+            }
+        }
+
+        // 7. Atualizar o Status do Agendamento para CANCELED
         schedule.setStatus(Schedule.Status.CANCELED);
         scheduleRepository.save(schedule);
 
-        // TODO: Em um sistema real, aqui você também deveria reverter o estoque dos livros
-        // associados a este agendamento cancelado. Isso não foi solicitado, mas é uma consideração importante.
-
-        // 7. Retornar Resposta de Sucesso
-        return ResponseEntity.ok(ApiResponse.success("200", "Agendamento cancelado com sucesso."));
+        // 8. Retornar Resposta de Sucesso
+        return ResponseEntity.ok(ApiResponse.success("200", "Agendamento cancelado com sucesso e estoque revertido."));
     }
 }

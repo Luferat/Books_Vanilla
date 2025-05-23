@@ -106,6 +106,7 @@ public class ListController {
         bookInfo.put("coverImageUrl", book.getCoverImageUrl());
         bookInfo.put("price", book.getPrice());
         bookInfo.put("ebook", book.isEbook());
+        bookInfo.put("stock", book.getStock());
         return bookInfo;
     }
 }

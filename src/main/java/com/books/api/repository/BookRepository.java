@@ -12,6 +12,7 @@ import java.util.List;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
     List<Book> findByStatus(Book.Status status);
+
     List<Book> findByStatus(Book.Status status, Sort sort);
 
     /**
@@ -19,14 +20,13 @@ public interface BookRepository extends JpaRepository<Book, Long> {
      * é encontrado no título, autor, sinopse ou palavras-chave.
      * A pesquisa é case-insensitive.
      *
-     * @param status O status do livro a ser pesquisado (deve ser Book.Status.ON).
+     * @param status     O status do livro a ser pesquisado (deve ser Book.Status.ON).
      * @param searchTerm O termo a ser pesquisado nos campos.
      * @return Uma lista de livros que correspondem aos critérios.
      */
     @Query("SELECT b FROM Book b WHERE b.status = :status " +
             "AND (LOWER(b.title) LIKE CONCAT('%', LOWER(:searchTerm), '%') " +
             "OR LOWER(b.author) LIKE CONCAT('%', LOWER(:searchTerm), '%') " +
-            "OR LOWER(CAST(b.synopsis AS string)) LIKE CONCAT('%', LOWER(:searchTerm), '%') " + // Adicionado CAST
-            "OR LOWER(b.keywords) LIKE CONCAT('%', LOWER(:searchTerm), '%'))")
+            "OR LOWER(CAST(b.synopsis AS string)) LIKE CONCAT('%', LOWER(:searchTerm), '%'))")
     List<Book> searchByTermInMultipleFields(@Param("status") Book.Status status, @Param("searchTerm") String searchTerm);
 }

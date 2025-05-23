@@ -37,7 +37,6 @@ public class Book {
     private Integer publicationYear;
 
     private Integer editionNumber;
-    private String publicationPlace;
     private Integer numberOfPages;
     private String genre;
     private String format;
@@ -49,10 +48,7 @@ public class Book {
     @Lob
     private String synopsis;
 
-    private String keywords;
     private String coverImageUrl;
-    private String translator;
-    private String originalLanguage;
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
