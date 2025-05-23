@@ -221,7 +221,6 @@ public class EditScheduleController {
             itemMap.put("bookId", item.getBook().getId());
             itemMap.put("bookTitle", item.getBook().getTitle());
             itemMap.put("bookPrice", item.getBook().getPrice());
-
             BigDecimal itemRentalPrice = item.getBook().getPrice().multiply(BigDecimal.valueOf(schedule.getDurationDays()));
             itemMap.put("itemRentalPrice", itemRentalPrice);
             updatedBookDetails.add(itemMap);
