@@ -238,7 +238,6 @@ public class DataInitializer {
                         .publisher("Martins Fontes")
                         .publicationYear(2006)
                         .editionNumber(1)
-
                         .numberOfPages(576)
                         .genre("Fantasia")
                         .format("Brochura")
@@ -247,10 +246,7 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("Um hobbit recebe um anel mágico e embarca em uma jornada...")
-
                         .coverImageUrl("https://picsum.photos/298/398")
-
-
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(4.90))
@@ -264,7 +260,6 @@ public class DataInitializer {
                         .publisher("Aleph")
                         .publicationYear(2013)
                         .editionNumber(1)
-
                         .numberOfPages(320)
                         .genre("Ficção Científica")
                         .format("Brochura")
@@ -273,10 +268,7 @@ public class DataInitializer {
                         .hasDrm(true)
                         .language("Português")
                         .synopsis("Um hacker de computador decadente é contratado para um último trabalho...")
-
                         .coverImageUrl("https://picsum.photos/299/399")
-
-
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(9.50))
@@ -290,7 +282,6 @@ public class DataInitializer {
                         .publisher("Penguin-Companhia")
                         .publicationYear(2017)
                         .editionNumber(1)
-
                         .numberOfPages(432)
                         .genre("Romance")
                         .format("Brochura")
@@ -299,10 +290,7 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("A história das turbulentas relações entre Elizabeth Bennet e Mr. Darcy...")
-
                         .coverImageUrl("https://picsum.photos/300/400")
-
-
                         .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(9.90))
@@ -316,7 +304,6 @@ public class DataInitializer {
                         .publisher("Ática")
                         .publicationYear(2019)
                         .editionNumber(null)
-
                         .numberOfPages(288)
                         .genre("Romance")
                         .format("Brochura")
@@ -325,10 +312,8 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("A narrativa em primeira pessoa de Bento Santiago, o Dom Casmurro...")
-
                         .coverImageUrl("https://picsum.photos/301/401")
-
-                        .status(Book.Status.ON)
+                       .status(Book.Status.ON)
                         .ebook(false)
                         .price(BigDecimal.valueOf(9.90))
                         .stock(2)
@@ -341,7 +326,6 @@ public class DataInitializer {
                         .publisher("Companhia das Letras")
                         .publicationYear(2015)
                         .editionNumber(1)
-
                         .numberOfPages(464)
                         .genre("Não Ficção")
                         .format("Brochura")
@@ -350,7 +334,6 @@ public class DataInitializer {
                         .hasDrm(false)
                         .language("Português")
                         .synopsis("Uma análise da história da humanidade desde os primeiros humanos até o presente...")
-
                         .coverImageUrl("https://picsum.photos/302/402")
                         .status(Book.Status.ON)
                         .ebook(true)
@@ -373,7 +356,6 @@ public class DataInitializer {
                         .hasDrm(true)
                         .language("Português")
                         .synopsis("Em uma república totalitária chamada Gilead...")
-
                         .coverImageUrl("https://picsum.photos/303/403")
                         .status(Book.Status.ON)
                         .ebook(true)
@@ -388,7 +370,6 @@ public class DataInitializer {
                         .publisher("Prentice Hall")
                         .publicationYear(2008)
                         .editionNumber(1)
-
                         .numberOfPages(464)
                         .genre("Não Ficção")
                         .format("E-book")
