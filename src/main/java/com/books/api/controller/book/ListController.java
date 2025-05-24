@@ -107,6 +107,7 @@ public class ListController {
         bookInfo.put("price", book.getPrice());
         bookInfo.put("ebook", book.isEbook());
         bookInfo.put("stock", book.getStock());
+        bookInfo.put("isbn", book.getIsbn());
         return bookInfo;
     }
 }

@@ -28,6 +28,7 @@ public class Config implements WebMvcConfigurer {
     private final String apiVersion = "v1"; // Versão atual da API
     private final String supportEmail = "suporte@books.com"; // E-mail de contato do suporte técnico
     private final boolean httpsOn = false; // true somente se estiver usando HTTP. Afeta os cookies.
+    private final String defaultBookCover = "https://picsum.photos/305/405"; // Capa padrão dos livros
 
     // Permite acesso http(s) às fotos de perfil
     @Override
