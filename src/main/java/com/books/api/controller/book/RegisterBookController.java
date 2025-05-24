@@ -51,9 +51,9 @@ public class RegisterBookController {
         // 2. Extrair e Validar Dados da Requisição (Manual)
         String title = (String) requestBody.get("title");
         String author = (String) requestBody.get("author");
-        Integer publicationYear;
+        int publicationYear;
         BigDecimal price;
-        Integer stock;
+        int stock;
         Book.Status status; // Pode ser fornecido ou default ON
         Boolean ebook = (Boolean) requestBody.getOrDefault("ebook", false); // Default para false
 
