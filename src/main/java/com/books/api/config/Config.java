@@ -29,6 +29,8 @@ public class Config implements WebMvcConfigurer {
     private final String supportEmail = "suporte@books.com"; // E-mail de contato do suporte técnico
     private final boolean httpsOn = false; // true somente se estiver usando HTTP. Afeta os cookies.
     private final String defaultBookCover = "https://picsum.photos/305/405"; // Capa padrão dos livros
+    private final String sendgridAPIKey = ""; // Sendgrid API Key
+    private final String sendgridFromEmail = ""; // Sendgrid Sender Verified E-mail
 
     // Permite acesso http(s) às fotos de perfil
     @Override
