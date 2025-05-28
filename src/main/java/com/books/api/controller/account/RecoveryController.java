@@ -1,7 +1,9 @@
 package com.books.api.controller.account;
 
+import com.books.api.config.Config;
 import com.books.api.model.Account;
 import com.books.api.repository.AccountRepository;
+import com.books.api.service.EmailService; // Importar EmailService
 import com.books.api.util.ApiResponse;
 import com.books.api.util.AppUtil;
 import com.books.api.util.JwtUtil;
@@ -25,6 +27,8 @@ public class RecoveryController {
     private final AccountRepository accountRepository;
     private final JwtUtil jwtUtil;
     private final AppUtil util;
+    private final EmailService emailService; // Injetar EmailService
+    private final Config config;
 
     @PostMapping("/recovery")
     public ResponseEntity<?> recovery(@RequestBody Map<String, Object> body, HttpServletRequest request) {
@@ -57,7 +61,24 @@ public class RecoveryController {
         account.setPassword(hashed);
         accountRepository.save(account);
 
-        // Retorna a nova senha
-        return ResponseEntity.ok(ApiResponse.success("200", "Nova senha gerada com sucesso.", Map.of("newPassword", newPassword)));
+        // Envia a nova senha por e-mail
+        String emailSubject = "Recuperação de Senha - " + account.getName();
+        String emailBody = "Olá " + account.getName() + ",\n\n"
+                + "Sua nova senha é: " + newPassword + "\n\n"
+                + "Recomendamos que você a altere após o login.\n\n"
+                + "Atenciosamente,\n"
+                + "Equipe " + config.getAppName(); // Assumindo que AppUtil tem getAppName()
+        try {
+            emailService.sendSimpleEmail(account.getEmail(), emailSubject, emailBody);
+        } catch (RuntimeException e) {
+            // Logar o erro, mas não impedir a recuperação da senha no banco de dados
+            System.err.println("Erro ao enviar e-mail de recuperação para " + account.getEmail() + ": " + e.getMessage());
+            // Opcional: retornar um erro diferente se o envio de e-mail for crítico
+            return ResponseEntity.internalServerError().body(ApiResponse.error("EMAIL_SEND_FAILED", "Nova senha gerada, mas houve um erro ao enviar o e-mail. Por favor, tente novamente ou contate o suporte."));
+        }
+
+
+        // Retorna a nova senha - AGORA VIA EMAIL, NÃO NO JSON DA RESPOSTA
+        return ResponseEntity.ok(ApiResponse.success("200", "Nova senha gerada e enviada para seu e-mail com sucesso."));
     }
 }
