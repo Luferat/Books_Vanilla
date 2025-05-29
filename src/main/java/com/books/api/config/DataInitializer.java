@@ -42,7 +42,7 @@ public class DataInitializer {
                 "(21) 99887-7665",
                 LocalDate.of(2000, 11, 12),
                 "Joca da Silva",
-                "joca@email.com",
+                "jocadasilvajoquinha@gmail.com",
                 "999.888.777-66",
                 encryptedPassword,
                 Account.Role.ADMIN,
