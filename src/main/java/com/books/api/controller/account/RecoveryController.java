@@ -77,7 +77,6 @@ public class RecoveryController {
             return ResponseEntity.internalServerError().body(ApiResponse.error("EMAIL_SEND_FAILED", "Nova senha gerada, mas houve um erro ao enviar o e-mail. Por favor, tente novamente ou contate o suporte."));
         }
 
-
         // Retorna a nova senha - AGORA VIA EMAIL, NÃO NO JSON DA RESPOSTA
         return ResponseEntity.ok(ApiResponse.success("200", "Nova senha gerada e enviada para seu e-mail com sucesso."));
     }
