@@ -28,6 +28,7 @@ public class ListScheduleController {
 
     @GetMapping("/list")
     public ResponseEntity<?> listMySchedules(HttpServletRequest httpRequest) {
+
         // 1. Autenticação e Autorização do Usuário
         Account loggedUser = jwtUtil.getLoggedUser(httpRequest, accountRepository);
         if (loggedUser == null || loggedUser.getStatus() != Account.Status.ON) {

@@ -36,6 +36,10 @@ import java.util.stream.Collectors;
 @RequiredArgsConstructor
 public class EditScheduleController {
 
+    // Dados do usuário de Teste
+    int loggedUserId = 1;
+    String loggedUserName = "Joca da Silva";
+
     private final JwtUtil jwtUtil;
     private final AccountRepository accountRepository;
     private final BookRepository bookRepository;
@@ -44,12 +48,15 @@ public class EditScheduleController {
     @PostMapping("/edit/{id}")
     @Transactional // Garante que a operação seja atômica
     public ResponseEntity<?> editSchedule(@PathVariable Long id, @RequestBody Map<String, Object> requestBody, HttpServletRequest httpRequest) {
+
+        /** Desabilitado para experimentos
         // 1. Autenticação e Autorização do Usuário
         Account loggedUser = jwtUtil.getLoggedUser(httpRequest, accountRepository);
         if (loggedUser == null || loggedUser.getStatus() != Account.Status.ON) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponse.error("401", "Usuário não autenticado ou inativo."));
         }
+        **/
 
         // 2. Buscar o Agendamento pelo ID
         // É importante que o agendamento seja carregado com seus itens para gerenciar o estoque.
@@ -64,7 +71,8 @@ public class EditScheduleController {
         Schedule schedule = scheduleOptional.get();
 
         // 3. Verificar se o agendamento pertence ao usuário logado
-        if (!schedule.getAccount().getId().equals(loggedUser.getId())) {
+        // if (!schedule.getAccount().getId().equals(loggedUser.getId())) { // Desabilitado para experimentos
+        if (!schedule.getAccount().getId().equals(loggedUserId)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponse.error("403", "Acesso negado. Este agendamento não pertence ao usuário logado."));
         }
@@ -233,7 +241,8 @@ public class EditScheduleController {
         responseData.put("scheduleDate", schedule.getScheduleDate());
         responseData.put("durationDays", schedule.getDurationDays());
         responseData.put("status", schedule.getStatus().name());
-        responseData.put("accountName", loggedUser.getName());
+        // responseData.put("accountName", loggedUser.getName()); // Desabilitado para experimentos
+        responseData.put("accountName", loggedUserName);
         responseData.put("bookedBooks", updatedBookDetails);
         responseData.put("totalRentalPrice", totalRentalPrice);
 

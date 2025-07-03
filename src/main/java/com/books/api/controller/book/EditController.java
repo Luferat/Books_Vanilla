@@ -28,6 +28,8 @@ public class EditController {
             @RequestBody Book updatedBook,
             HttpServletRequest request
     ) {
+
+        /** Desabilitado para experimentos
         // 1. Verifica autenticação
         Account loggedUser = jwtUtil.getLoggedUser(request, accountRepository);
         if (loggedUser == null) {
@@ -40,6 +42,7 @@ public class EditController {
             return ResponseEntity.status(403)
                     .body(ApiResponse.error("403", "Acesso negado. Requer role de ADMIN ou OPERATOR."));
         }
+        **/
 
         // 3. Edita livro se encontrado
         return bookRepository.findById(id)

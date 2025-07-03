@@ -42,6 +42,7 @@ public class NewScheduleController {
     @PostMapping("/create")
     @Transactional // Garante que a operação seja atômica (ou tudo salva, ou nada)
     public ResponseEntity<?> createSchedule(@RequestBody Map<String, Object> requestBody, HttpServletRequest httpRequest) {
+
         // 1. Autenticação e Autorização do Usuário
         Account loggedUser = jwtUtil.getLoggedUser(httpRequest, accountRepository);
         if (loggedUser == null || loggedUser.getStatus() != Account.Status.ON) {

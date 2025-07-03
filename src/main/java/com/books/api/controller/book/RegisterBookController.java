@@ -35,6 +35,8 @@ public class RegisterBookController {
     @PostMapping("/register")
     @Transactional // Garante que a operação de salvamento seja atômica
     public ResponseEntity<?> registerBook(@RequestBody Map<String, Object> requestBody, HttpServletRequest httpRequest) {
+
+        /** Desabilitado para experimentos
         // 1. Autenticação e Autorização do Usuário
         Account loggedUser = jwtUtil.getLoggedUser(httpRequest, accountRepository);
         if (loggedUser == null || loggedUser.getStatus() != Account.Status.ON) {
@@ -47,6 +49,7 @@ public class RegisterBookController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponse.error("403", "Acesso negado. Requer role de ADMIN ou OPERATOR para cadastrar livros."));
         }
+        **/
 
         // 2. Extrair e Validar Dados da Requisição (Manual)
         String title = (String) requestBody.get("title");

@@ -26,6 +26,8 @@ public class DelController {
 
     @PostMapping("/delete/{id}")
     public ResponseEntity<?> deleteBook(@PathVariable Long id, HttpServletRequest request) {
+
+        /** Desabilitado para experimentos
         // 1. Verificar o Token e Obter o Usuário Logado
         Account loggedUser = jwtUtil.getLoggedUser(request, accountRepository);
         if (loggedUser == null) {
@@ -38,6 +40,7 @@ public class DelController {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponse.error("403", "Acesso negado. Requer role de ADMIN ou OPERATOR."));
         }
+        **/
 
         // 3. Buscar o Livro pelo ID
         Optional<Book> bookOptional = bookRepository.findById(id);

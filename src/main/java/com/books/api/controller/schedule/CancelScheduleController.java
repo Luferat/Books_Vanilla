@@ -35,12 +35,18 @@ public class CancelScheduleController {
     @PostMapping("/cancel/{id}")
     @Transactional // Garante que a operação seja atômica
     public ResponseEntity<?> cancelSchedule(@PathVariable Long id, HttpServletRequest httpRequest) {
+
+        // Id de usuário para experimentos
+        int loggedUserId = 1;
+
+        /** Desabilitado para experimentos
         // 1. Autenticação e Autorização do Usuário
         Account loggedUser = jwtUtil.getLoggedUser(httpRequest, accountRepository);
         if (loggedUser == null || loggedUser.getStatus() != Account.Status.ON) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponse.error("401", "Usuário não autenticado ou inativo."));
         }
+        **/
 
         // 2. Buscar o Agendamento pelo ID
         // É importante que o agendamento seja carregado com seus itens para gerenciar o estoque.
@@ -54,7 +60,8 @@ public class CancelScheduleController {
         Schedule schedule = scheduleOptional.get();
 
         // 3. Verificar se o agendamento pertence ao usuário logado
-        if (!schedule.getAccount().getId().equals(loggedUser.getId())) {
+        // if (!schedule.getAccount().getId().equals(loggedUser.getId())) { // Desabilitado para experimentos
+        if (!schedule.getAccount().getId().equals(loggedUserId)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponse.error("403", "Acesso negado. Este agendamento não pertence ao usuário logado."));
         }

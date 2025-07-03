@@ -24,18 +24,24 @@ import java.util.*;
 @RequiredArgsConstructor
 public class ListOneScheduleController {
 
+    // Id de usuário para experimentos
+    int loggedUserId = 1;
+
     private final JwtUtil jwtUtil;
     private final AccountRepository accountRepository;
     private final ScheduleRepository scheduleRepository;
 
     @GetMapping("/{id}")
     public ResponseEntity<?> getScheduleById(@PathVariable Long id, HttpServletRequest httpRequest) {
+
+        /** Desabilitado para experimentos
         // 1. Autenticação e Autorização do Usuário
         Account loggedUser = jwtUtil.getLoggedUser(httpRequest, accountRepository);
         if (loggedUser == null || loggedUser.getStatus() != Account.Status.ON) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
                     .body(ApiResponse.error("401", "Usuário não autenticado ou inativo."));
         }
+        **/
 
         // 2. Buscar o Agendamento pelo ID
         // Usamos findById que já deve carregar as relações eagermente devido à consulta em ScheduleRepository,
@@ -53,7 +59,8 @@ public class ListOneScheduleController {
         Schedule schedule = scheduleOptional.get();
 
         // 4. Verificar se o agendamento pertence ao usuário logado
-        if (!schedule.getAccount().getId().equals(loggedUser.getId())) {
+        // if (!schedule.getAccount().getId().equals(loggedUser.getId())) { // Desabilitado para experimentos
+        if (!schedule.getAccount().getId().equals(loggedUserId)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN)
                     .body(ApiResponse.error("403", "Acesso negado. Este agendamento não pertence ao usuário logado."));
         }
